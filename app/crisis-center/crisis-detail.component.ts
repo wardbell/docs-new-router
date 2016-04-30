@@ -2,8 +2,7 @@
 // #docregion
 import { Component } from 'angular2/core';
 import { Crisis, CrisisService } from './crisis.service';
-import { Router, OnActivate, RouteSegment } from 'angular2/alt_router';
-// import { CanDeactivate } from 'angular2/alt_router';
+import { Router, OnActivate, CanDeactivate, RouteSegment } from 'angular2/alt_router';
 import {DialogService} from '../dialog.service';
 
 @Component({
@@ -25,8 +24,7 @@ import {DialogService} from '../dialog.service';
   styles: ['input {width: 20em}']
 })
 
-export class CrisisDetailComponent implements OnActivate {// , CanDeactivate {
-
+export class CrisisDetailComponent implements OnActivate, CanDeactivate {
   crisis: Crisis;
   editName: string;
 
@@ -48,7 +46,6 @@ export class CrisisDetailComponent implements OnActivate {// , CanDeactivate {
     });
   }
 
- // NOT IMPLEMENTED YET
   routerCanDeactivate(): any {
     // Allow synchronous navigation (`true`) if no crisis or the crisis is unchanged.
     if (!this.crisis || this.crisis.name === this.editName) {
@@ -60,7 +57,6 @@ export class CrisisDetailComponent implements OnActivate {// , CanDeactivate {
   }
 
   cancel() {
-    this.editName = this.crisis.name;
     this.gotoCrises();
   }
 
@@ -76,7 +72,7 @@ export class CrisisDetailComponent implements OnActivate {// , CanDeactivate {
     // so that the CrisisListComponent can select that hero.
     // Add a totally useless `foo` parameter for kicks.
     // #docregion gotoCrises-navigate
-    this._router.navigateByUrl(`/crisis-center/${crisisId};foo=foo`);
+    this._router.navigate(['/crisis-center', {id: crisisId, foo: 'foo'}]);
     // #enddocregion gotoCrises-navigate
   }
   // #enddocregion gotoCrises

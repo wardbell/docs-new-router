@@ -2,7 +2,7 @@
 // #docregion
 import { Component } from 'angular2/core';
 import { Crisis, CrisisService } from './crisis.service';
-import { Router, OnActivate, RouteSegment } from 'angular2/alt_router';
+import { Router, OnActivate, RouteSegment, Tree } from 'angular2/alt_router';
 
 @Component({
   template: `
@@ -26,12 +26,12 @@ export class CrisisListComponent implements OnActivate {
 
   isSelected(crisis: Crisis) { return crisis.id === this._selectedId; }
 
-  routerOnActivate(curr: RouteSegment): void {
-    this._selectedId = +curr.getParam('id');
+  routerOnActivate(curr: RouteSegment, prev, currTree: Tree<RouteSegment>): void {
+    this._selectedId = +currTree.parent(curr).getParam('id');
     this._service.getCrises().then(crises => this.crises = crises);
   }
 
   onSelect(crisis: Crisis) {
-    this._router.navigateByUrl(`/crisis-center/${crisis.id}`);
+    this._router.navigate([`/crisis-center`, crisis.id]);
   }
 }

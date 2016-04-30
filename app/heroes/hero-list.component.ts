@@ -43,7 +43,7 @@ export class HeroListComponent implements OnActivate {
 
   // #docregion select
   onSelect(hero: Hero) {
-    this._router.navigateByUrl(`/hero/${hero.id}`);
+    this._router.navigate(['/hero', hero.id]);
   }
   // #enddocregion select
 

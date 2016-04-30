@@ -15,8 +15,8 @@ import {CrisisService}         from './crisis.service';
   providers:  [CrisisService]
 })
 @Routes([
-  {path: '/:id', component: CrisisDetailComponent},
-  {path: '',    component: CrisisListComponent} // , useAsDefault: true},
+  {path: '',    component: CrisisListComponent}, // , useAsDefault: true},
+  {path: '/:id', component: CrisisDetailComponent}
 ])
 export class CrisisCenterComponent { }
 // #enddocregion
