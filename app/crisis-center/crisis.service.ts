@@ -1,5 +1,9 @@
 // #docplaster
 
+export class Crisis {
+  constructor(public id: number, public name: string) { }
+}
+
 const CRISES = [
   new Crisis(1, 'Dragon Burning Cities'),
   new Crisis(2, 'Sky Rains Great White Sharks'),
@@ -12,11 +16,6 @@ let crisesPromise = Promise.resolve(CRISES);
 // #docregion
 import {Injectable} from 'angular2/core';
 
-export class Crisis {
-  constructor(public id: number, public name: string) { }
-}
-
-@Injectable()
 export class CrisisService {
 
   static nextCrisisId = 100;

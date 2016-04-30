@@ -16,7 +16,7 @@ import {HeroService}           from './heroes/hero.service';
   template: `
     <h1 class="title">Component Router</h1>
     <nav>
-      <a [routerLink]="['/crisis-center/']">Crisis Center</a>
+      <a [routerLink]="['/crisis-center']">Crisis Center</a>
       <a [routerLink]="['/heroes']">Heroes</a>
     </nav>
     <router-outlet></router-outlet>
@@ -27,15 +27,7 @@ import {HeroService}           from './heroes/hero.service';
 })
 // #docregion routes
 @Routes([
-
-  // #docregion routes-cc
-  { // Crisis Center child route
-    path: '/crisis-center/...',
-    component: CrisisCenterComponent,
-    // useAsDefault: true // not implemented yet
-  },
-  // #enddocregion routes-cc
-
+  {path: '/crisis-center',  component: CrisisCenterComponent},
   {path: '/heroes',  component: HeroListComponent},
   {path: '/hero/:id', component: HeroDetailComponent},
 ])

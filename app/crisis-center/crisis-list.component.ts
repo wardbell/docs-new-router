@@ -32,6 +32,6 @@ export class CrisisListComponent implements OnActivate {
   }
 
   onSelect(crisis: Crisis) {
-    this._router.navigateByUrl( `/crisis-list/${crisis.id}`);
+    this._router.navigateByUrl(`/crisis-center/${crisis.id}`);
   }
 }
