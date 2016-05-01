@@ -29,17 +29,17 @@ export class HeroDetailComponent implements OnActivate  {
     private _service: HeroService) {}
   // #enddocregion ctor
 
- // #docregion OnActivate
+  // #docregion OnActivate
   routerOnActivate(curr: RouteSegment): void {
     let id = +curr.getParam('id');
     this._service.getHero(id).then(hero => this.hero = hero);
   }
- // #enddocregion OnActivate
+  // #enddocregion OnActivate
 
   // #docregion gotoHeroes
   gotoHeroes() {
     // Like <a [routerLink]="['/heroes']">Heroes</a>
-    this._router.navigateByUrl('/heroes');
+    this._router.navigate(['/heroes']);
   }
   // #enddocregion gotoHeroes
 }

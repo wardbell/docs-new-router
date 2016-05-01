@@ -34,7 +34,7 @@ export class HeroListComponent implements OnInit {
   // #docregion select
   onSelect(hero: Hero) {
     // #docregion nav-to-detail
-    this._router.navigateByUrl( `/heroes/${hero.id}`);
+    this._router.navigate(['/hero', hero.id]);
     // #enddocregion nav-to-detail
   }
   // #enddocregion select
@@ -42,7 +42,7 @@ export class HeroListComponent implements OnInit {
 // #enddocregion
 
 /* A link parameters array
-// #docregion link-parameters-array
-['HeroDetail', { id: hero.id }] // {id: 15}
-// #enddocregion link-parameters-array
-*/
+ // #docregion link-parameters-array
+ ['HeroDetail', { id: hero.id }] // {id: 15}
+ // #enddocregion link-parameters-array
+ */

@@ -24,16 +24,17 @@ import {HeroListComponent}     from './hero-list.component';
 })
 // #enddocregion
 /*
-// #docregion route-config
-@Component({ ... })
-// #enddocregion route-config
-*/
+ // #docregion route-config
+ @Component({ ... })
+ // #enddocregion route-config
+ */
 // #docregion
 // #docregion route-config
 @Routes([
 // #docregion route-defs
   {path: '/crisis-center', component: CrisisListComponent},
-  {path: '/heroes',        component: HeroListComponent}
+  {path: '/heroes',        component: HeroListComponent},
+  {path: '*',        component: CrisisListComponent}
 // #enddocregion route-defs
 ])
 export class AppComponent { }

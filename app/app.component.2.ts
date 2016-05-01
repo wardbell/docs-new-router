@@ -2,21 +2,21 @@
 // #docplaster
 
 // #docregion
-import {Component}   from 'angular2/core';
-import {Routes, ROUTER_DIRECTIVES} from 'angular2/alt_router';
+import {Component, OnInit}   from 'angular2/core';
+import {Routes, ROUTER_DIRECTIVES, Router} from 'angular2/alt_router';
 
 import {CrisisListComponent}   from './crisis-list.component';
 // #enddocregion
 /*
-// Apparent Milestone 2 imports
-// #docregion
-// #docregion hero-import
-import {HeroListComponent}     from './heroes/hero-list.component';
-import {HeroDetailComponent}   from './heroes/hero-detail.component';
-import {HeroService}           from './heroes/hero.service';
-// #enddocregion hero-import
-// #enddocregion
-*/
+ // Apparent Milestone 2 imports
+ // #docregion
+ // #docregion hero-import
+ import {HeroListComponent}     from './heroes/hero-list.component';
+ import {HeroDetailComponent}   from './heroes/hero-detail.component';
+ import {HeroService}           from './heroes/hero.service';
+ // #enddocregion hero-import
+ // #enddocregion
+ */
 // Actual Milestone 2 imports
 import {HeroListComponent}     from './heroes/hero-list.component.1';
 import {HeroDetailComponent}   from './heroes/hero-detail.component.1';
@@ -38,10 +38,10 @@ import {HeroService}           from './heroes/hero.service';
 })
 // #enddocregion
 /*
-// #docregion route-config
-@Component({ ... })
-// #enddocregion route-config
-*/
+ // #docregion route-config
+ @Component({ ... })
+ // #enddocregion route-config
+ */
 // #docregion
 // #docregion route-config
 @Routes([
@@ -53,6 +53,12 @@ import {HeroService}           from './heroes/hero.service';
   // #enddocregion hero-detail-route
 // #enddocregion route-defs
 ])
-export class AppComponent { }
+export class AppComponent  implements OnInit {
+  constructor(private _router: Router) {}
+
+  ngOnInit():any {
+    return this._router.navigate(['/crisis-center']);
+  }
+}
 // #enddocregion route-config
 // #enddocregion

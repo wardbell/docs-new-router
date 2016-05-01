@@ -1,7 +1,7 @@
 // #docplaster
 // #docregion
-import {Component} from 'angular2/core';
-import {Routes, ROUTER_DIRECTIVES} from 'angular2/alt_router';
+import {Component, OnInit} from 'angular2/core';
+import {Routes, Router, ROUTER_DIRECTIVES} from 'angular2/alt_router';
 
 import {CrisisCenterComponent} from './crisis-center/crisis-center.component';
 import {HeroListComponent}     from './heroes/hero-list.component';
@@ -32,4 +32,10 @@ import {HeroService}           from './heroes/hero.service';
   {path: '/hero/:id', component: HeroDetailComponent},
 ])
 // #enddocregion routes
-export class AppComponent { }
+export class AppComponent implements OnInit {
+  constructor(private _router: Router) {}
+
+  ngOnInit():any {
+    return this._router.navigate(['/crisis-center']);
+  }
+}

@@ -4,7 +4,7 @@
 import { Component }          from 'angular2/core';
 import { Hero, HeroService}   from './hero.service';
 // #docregion import-route-params
-import { Router, RouteSegment, Tree, OnActivate } from 'angular2/alt_router';
+import { Router, RouteSegment, Tree, OnActivate, RouteTree } from 'angular2/alt_router';
 // #enddocregion import-route-params
 
 @Component({
@@ -32,7 +32,7 @@ export class HeroListComponent implements OnActivate {
     private _router: Router) {  }
   // #enddocregion ctor
 
-  routerOnActivate(curr: RouteSegment, prev?: RouteSegment, currTree?: Tree<RouteSegment>, prevTree?: Tree<RouteSegment>): void {
+  routerOnActivate(curr: RouteSegment, prev?: RouteSegment, currTree?: RouteTree, prevTree?: RouteTree): void {
     this._selectedId = +curr.getParam('id');
     this._service.getHeroes().then(heroes => this.heroes = heroes);
   }
