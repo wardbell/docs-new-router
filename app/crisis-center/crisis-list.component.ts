@@ -26,7 +26,7 @@ export class CrisisListComponent implements OnActivate {
 
   isSelected(crisis: Crisis) { return crisis.id === this._selectedId; }
 
-  routerOnActivate(curr: RouteSegment, prev, currTree: Tree<RouteSegment>): void {
+  routerOnActivate(curr: RouteSegment, prev: RouteSegment, currTree: Tree<RouteSegment>): void {
     this._selectedId = +currTree.parent(curr).getParam('id');
     this._service.getCrises().then(crises => this.crises = crises);
   }
