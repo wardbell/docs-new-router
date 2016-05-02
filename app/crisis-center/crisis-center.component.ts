@@ -1,6 +1,6 @@
 // #docregion
 import {Component}     from 'angular2/core';
-import {Routes, Router, ROUTER_DIRECTIVES} from 'angular2/alt_router';
+import {Routes, ROUTER_DIRECTIVES} from 'angular2/alt_router';
 
 import {CrisisListComponent}   from './crisis-list.component';
 import {CrisisDetailComponent} from './crisis-detail.component';
@@ -15,7 +15,7 @@ import {CrisisService}         from './crisis.service';
   providers:  [CrisisService]
 })
 @Routes([
-  {path: '',    component: CrisisListComponent}, // , useAsDefault: true},
+  {path: '',    component: CrisisListComponent}, // , useAsDefault: true}, // coming soon
   {path: '/:id', component: CrisisDetailComponent}
 ])
 export class CrisisCenterComponent { }

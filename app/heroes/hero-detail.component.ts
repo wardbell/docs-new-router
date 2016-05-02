@@ -25,15 +25,15 @@ export class HeroDetailComponent implements OnActivate  {
 
   // #docregion ctor
   constructor(
-    private _router: Router,
-    private _service: HeroService) {}
+    private router: Router,
+    private service: HeroService) {}
   // #enddocregion ctor
 
 
   // #docregion OnActivate
   routerOnActivate(curr: RouteSegment): void {
     let id = +curr.getParam('id');
-    this._service.getHero(id).then(hero => this.hero = hero);
+    this.service.getHero(id).then(hero => this.hero = hero);
   }
   // #enddocregion OnActivate
 
@@ -43,7 +43,7 @@ export class HeroDetailComponent implements OnActivate  {
     // so that the HeroList component can select that hero.
     // Add a totally useless `foo` parameter for kicks.
     // #docregion gotoHeroes-navigate
-    this._router.navigate([`/heroes`, {id: heroId, foo: 'foo'}]);
+    this.router.navigate([`/heroes`, {id: heroId, foo: 'foo'}]);
     // #enddocregion gotoHeroes-navigate
   }
 }

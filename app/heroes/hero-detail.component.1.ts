@@ -25,21 +25,21 @@ export class HeroDetailComponent implements OnActivate  {
 
   // #docregion ctor
   constructor(
-    private _router: Router,
-    private _service: HeroService) {}
+    private router: Router,
+    private service: HeroService) {}
   // #enddocregion ctor
 
   // #docregion OnActivate
   routerOnActivate(curr: RouteSegment): void {
     let id = +curr.getParam('id');
-    this._service.getHero(id).then(hero => this.hero = hero);
+    this.service.getHero(id).then(hero => this.hero = hero);
   }
   // #enddocregion OnActivate
 
   // #docregion gotoHeroes
   gotoHeroes() {
     // Like <a [routerLink]="['/heroes']">Heroes</a>
-    this._router.navigate(['/heroes']);
+    this.router.navigate(['/heroes']);
   }
   // #enddocregion gotoHeroes
 }

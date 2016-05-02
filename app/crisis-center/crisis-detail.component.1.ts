@@ -36,15 +36,15 @@ export class CrisisDetailComponent implements OnActivate {// , CanDeactivate {
 
 // #enddocregion routerCanDeactivate, cancel-save
   constructor(
-    private _service: CrisisService,
-    private _router: Router,
-    private _dialog: DialogService
+    private service: CrisisService,
+    private router: Router,
+    private dialog: DialogService
     ) { }
 
   // #docregion ngOnActivate
   routerOnActivate(curr: RouteSegment): void {
     let id = +curr.getParam('id');
-    this._service.getCrisis(id).then(crisis => {
+    this.service.getCrisis(id).then(crisis => {
       if (crisis) {
         this.editName = crisis.name;
         this.crisis = crisis;
@@ -64,7 +64,7 @@ export class CrisisDetailComponent implements OnActivate {// , CanDeactivate {
     }
     // Otherwise ask the user with the dialog service and return its
     // promise which resolves to true or false when the user decides
-    return this._dialog.confirm('Discard changes?');
+    return this.dialog.confirm('Discard changes?');
   }
   // #enddocregion routerCanDeactivate
 
@@ -83,7 +83,7 @@ export class CrisisDetailComponent implements OnActivate {// , CanDeactivate {
   // #docregion gotoCrises
   gotoCrises() {
     // Like <a [routerLink]="[/crisis-center/]">Crisis Center</a
-    this._router.navigateByUrl('/crisis-center/');
+    this.router.navigateByUrl('/crisis-center/'); // absolute url
   }
   // #enddocregion gotoCrises
 // #docregion routerCanDeactivate, cancel-save

@@ -27,16 +27,19 @@ import {DialogService} from '../dialog.service';
 export class CrisisDetailComponent implements OnActivate, CanDeactivate {
   crisis: Crisis;
   editName: string;
+  private curSegment: RouteSegment;
 
   constructor(
-    private _service: CrisisService,
-    private _router: Router,
-    private _dialog: DialogService
+    private service: CrisisService,
+    private router: Router,
+    private dialog: DialogService
     ) { }
 
-  routerOnActivate(curr: RouteSegment): void {
+  routerOnActivate(curr: RouteSegment) {
+    this.curSegment = curr;
+
     let id = +curr.getParam('id');
-    this._service.getCrisis(id).then(crisis => {
+    this.service.getCrisis(id).then(crisis => {
       if (crisis) {
         this.editName = crisis.name;
         this.crisis = crisis;
@@ -53,7 +56,7 @@ export class CrisisDetailComponent implements OnActivate, CanDeactivate {
     }
     // Otherwise ask the user with the dialog service and return its
     // promise which resolves to true or false when the user decides
-    return this._dialog.confirm('Discard changes?');
+    return this.dialog.confirm('Discard changes?');
   }
 
   cancel() {
@@ -72,7 +75,11 @@ export class CrisisDetailComponent implements OnActivate, CanDeactivate {
     // so that the CrisisListComponent can select that hero.
     // Add a totally useless `foo` parameter for kicks.
     // #docregion gotoCrises-navigate
-    this._router.navigate(['/crisis-center', {id: crisisId, foo: 'foo'}]);
+    // Absolute link
+    this.router.navigate(['/crisis-center', {id: crisisId, foo: 'foo'}]);
+
+    // Relative link
+    // this.router.navigate(['../', {id: crisisId, foo: 'foo'}], this.curSegment);
     // #enddocregion gotoCrises-navigate
   }
   // #enddocregion gotoCrises

@@ -25,25 +25,25 @@ export class HeroListComponent implements OnActivate {
   heroes: Hero[];
 
   // #docregion ctor
-  private _selectedId: number;
+  private selectedId: number;
 
   constructor(
-    private _service: HeroService,
-    private _router: Router) {  }
+    private service: HeroService,
+    private router: Router) {  }
   // #enddocregion ctor
 
   routerOnActivate(curr: RouteSegment, prev?: RouteSegment, currTree?: RouteTree, prevTree?: RouteTree): void {
-    this._selectedId = +curr.getParam('id');
-    this._service.getHeroes().then(heroes => this.heroes = heroes);
+    this.selectedId = +curr.getParam('id');
+    this.service.getHeroes().then(heroes => this.heroes = heroes);
   }
 
   // #docregion isSelected
-  isSelected(hero: Hero) { return hero.id === this._selectedId; }
+  isSelected(hero: Hero) { return hero.id === this.selectedId; }
   // #enddocregion isSelected
 
   // #docregion select
   onSelect(hero: Hero) {
-    this._router.navigate(['/hero', hero.id]);
+    this.router.navigate(['/hero', hero.id]);
   }
   // #enddocregion select
 

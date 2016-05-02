@@ -20,16 +20,16 @@ export class CrisisListComponent implements OnActivate {
   crises: Crisis[];
 
   constructor(
-    private _service: CrisisService,
-    private _router: Router) {}
+    private service: CrisisService,
+    private router: Router) {}
 
   routerOnActivate(curr: RouteSegment): void {
-    this._service.getCrises().then(crises => this.crises = crises);
+    this.service.getCrises().then(crises => this.crises = crises);
   }
 
   // #docregion select
   onSelect(crisis: Crisis) {
-    this._router.navigateByUrl( `/crisis-list/${crisis.id}`);
+    this.router.navigateByUrl( `/crisis-list/${crisis.id}`);
   }
   // #enddocregion select
 }

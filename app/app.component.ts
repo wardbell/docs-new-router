@@ -33,9 +33,9 @@ import {HeroService}           from './heroes/hero.service';
 ])
 // #enddocregion routes
 export class AppComponent implements OnInit {
-  constructor(private _router: Router) {}
+  constructor(private router: Router) {}
 
-  ngOnInit():any {
-    return this._router.navigate(['/crisis-center']);
+  ngOnInit() {
+    this.router.navigate(['/crisis-center']);
   }
 }

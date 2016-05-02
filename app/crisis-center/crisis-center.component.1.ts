@@ -19,7 +19,7 @@ import {CrisisService}         from './crisis.service';
 // #docregion route-config
 @Routes([
   // #docregion default-route
-  {path: '/',    component: CrisisListComponent}, // , useAsDefault: true},
+  {path: '/',    component: CrisisListComponent}, // , useAsDefault: true}, // coming soon
   // #enddocregion default-route
   {path: '/:id', component: CrisisDetailComponent}
 ])

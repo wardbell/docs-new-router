@@ -2,7 +2,7 @@
 // #docregion
 import { Component } from 'angular2/core';
 import { Crisis, CrisisService } from './crisis.service';
-import { Router, OnActivate, RouteSegment, Tree, RouteTree } from 'angular2/alt_router';
+import { Router, OnActivate, RouteSegment, RouteTree } from 'angular2/alt_router';
 
 @Component({
   template: `
@@ -17,21 +17,26 @@ import { Router, OnActivate, RouteSegment, Tree, RouteTree } from 'angular2/alt_
 })
 export class CrisisListComponent implements OnActivate {
   crises: Crisis[];
-
-  private _selectedId: number;
+  private currSegment: RouteSegment;
+  private selectedId: number;
 
   constructor(
-    private _service: CrisisService,
-    private _router: Router) { }
+    private service: CrisisService,
+    private router: Router) { }
 
-  isSelected(crisis: Crisis) { return crisis.id === this._selectedId; }
+  isSelected(crisis: Crisis) { return crisis.id === this.selectedId; }
 
-  routerOnActivate(curr: RouteSegment, prev:any, currTree: RouteTree): void {
-    this._selectedId = +currTree.parent(curr).getParam('id');
-    this._service.getCrises().then(crises => this.crises = crises);
+  routerOnActivate(curr: RouteSegment, prev: RouteSegment, currTree: RouteTree) {
+    this.currSegment = curr;
+    this.selectedId = +currTree.parent(curr).getParam('id');
+    this.service.getCrises().then(crises => this.crises = crises);
   }
 
   onSelect(crisis: Crisis) {
-    this._router.navigate([`/crisis-center`, crisis.id]);
+    // Absolute link
+    this.router.navigate([`/crisis-center`, crisis.id]);
+
+    // Relative link
+    // this.router.navigate([`../`, crisis.id], this.currSegment);
   }
 }

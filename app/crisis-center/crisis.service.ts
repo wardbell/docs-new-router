@@ -16,6 +16,7 @@ let crisesPromise = Promise.resolve(CRISES);
 // #docregion
 import {Injectable} from 'angular2/core';
 
+@Injectable()
 export class CrisisService {
 
   static nextCrisisId = 100;

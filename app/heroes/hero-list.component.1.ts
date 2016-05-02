@@ -23,18 +23,18 @@ export class HeroListComponent implements OnInit {
 
   // #docregion ctor
   constructor(
-    private _router: Router,
-    private _service: HeroService) { }
+    private router: Router,
+    private service: HeroService) { }
   // #enddocregion ctor
 
   ngOnInit() {
-    this._service.getHeroes().then(heroes => this.heroes = heroes)
+    this.service.getHeroes().then(heroes => this.heroes = heroes)
   }
 
   // #docregion select
   onSelect(hero: Hero) {
     // #docregion nav-to-detail
-    this._router.navigate(['/hero', hero.id]);
+    this.router.navigate(['/hero', hero.id]);
     // #enddocregion nav-to-detail
   }
   // #enddocregion select
