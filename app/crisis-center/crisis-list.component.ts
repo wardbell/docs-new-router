@@ -34,9 +34,9 @@ export class CrisisListComponent implements OnActivate {
 
   onSelect(crisis: Crisis) {
     // Absolute link
-    this.router.navigate([`/crisis-center`, crisis.id]);
+    // this.router.navigate([`/crisis-center`, crisis.id]);
 
     // Relative link
-    // this.router.navigate([`../`, crisis.id], this.currSegment);
+    this.router.navigate([`./${crisis.id}`], this.currSegment);
   }
 }
